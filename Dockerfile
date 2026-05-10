@@ -19,10 +19,12 @@ RUN mvn -f /app/pom.xml clean package
 RUN ls -la /app/target
 # Copy the built JAR file to the container
 
+# Rename generated JAR to app.jar
+RUN cp /app/target/*.jar /app/app.jar
 
 EXPOSE 8080
 
-ENTRYPOINT ["java", "-jar", "app.jar"]
+ENTRYPOINT ["java", "-jar", "/app/app.jar"]
 
 
 
